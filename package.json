@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "env2yml": "./index.js"
+  },
   "scripts": {
     "example": "node index.js -e publishing-app/env-vars-staging.env -e publishing-app/secrets.env -y publishing-app/config.yml -o out.yml",
     "test": "echo \"Error: no test specified\" && exit 1"
