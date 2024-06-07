@@ -1,4 +1,5 @@
 annotations/
 node_modules/
 publishing-app/
+test_cases/publish-stocks/
 package-lock.json

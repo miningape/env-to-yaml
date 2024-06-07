@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
-const commandLineArgs = require("command-line-args");
-const fs = require("fs").promises;
+"use strict";
+
+import commandLineArgs from "command-line-args";
+import fs from "fs/promises";
 
 async function main() {
   const options = commandLineArgs([
@@ -42,7 +44,7 @@ async function main() {
   const ymlBuffer = await fs.readFile(options.yaml);
   const yml = ymlBuffer
     .toString()
-    .replace(/\$\{(\w+)(?::-(.*))?}/g, ($0, $1, $2) => {
+    .replace(/\$\{(\w+)(?::-?(.*))?}/g, ($0, $1, $2) => {
       let envValue = env[$1];
 
       if (!envValue) {
@@ -62,4 +64,6 @@ async function main() {
   await fs.writeFile(options.out, yml);
 }
 
-main().catch((e) => console.error(e));
+await main()
+  .then(() => console.log("\nCompleted!"))
+  .catch((e) => console.error(e));
